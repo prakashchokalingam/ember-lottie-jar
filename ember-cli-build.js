@@ -3,7 +3,17 @@ const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function(defaults) {
   var app = new EmberAddon(defaults, {
-    // Add options here
+
+    nodeModulesToVendor: [
+      'node_modules/lottie-web/build/player'
+    ]
+
+  });
+
+  app.import('vendor/lottie.js', {
+    using: [
+      { transformation: 'amd', as: 'lottie' }
+    ]
   });
 
   /*
