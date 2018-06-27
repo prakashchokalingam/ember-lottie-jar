@@ -1,0 +1,160 @@
+.loader {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    animation: spin 2s linear infinite;
+    margin: auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+.animation {
+  position: relative;
+}
+
+.wow {
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+  vertical-align: middle;
+  bottom: 0.1em;
+}
+
+.the-cool-bird {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+}
+
+/*  end of animations */
+
+body {
+  margin: 0px;
+  background-color: #f8efec;
+  padding-bottom: 3em;
+}
+
+
+.demo {
+  display: grid;
+  grid-template-areas:
+  'navbar navbar navbar navbar'
+  'demoExperiments demoExperiments demoExperiments demoAnimation'
+  'document document document document'
+}
+
+/* nav */
+.nav {
+  grid-area: navbar;
+  background-color: #E04E39;
+  height: 4em;
+}
+
+.nav__title {
+  color: #fff;
+  display: inline-block;
+  font-size: 2em;
+  padding-top: 0.4em;
+  padding-left: 1em;
+}
+
+ .nav__icon {
+  width: 1.5em;
+  height: 1.5em;
+  position: relative;
+  bottom: 0.2em;
+  right: 0.2em;
+  vertical-align: middle;
+}
+
+.nav__items {
+  display: inline-block;
+  float: right;
+  padding: 1.5em;
+}
+
+.nav__items a, .nav__items a:visited, .nav__items a:hover {
+  text-decoration: none;
+  color: #fff;
+  margin: 0.5em;
+}
+
+/* demo */
+
+.demo--experiments {
+  grid-template-areas: 'demoExperiments';
+  font-size: 1.2em;
+  padding: 1.4em;
+  border-bottom: 1px solid #999;
+  padding-bottom: 0px;
+}
+
+.demo-exp--item {
+  display: inline-block;
+  padding: 0.2em 1.4em 1em 1.4em;
+}
+
+input {
+  width: 30px;
+}
+
+.demo--animation {
+  grid-template-areas: 'demoAnimation';
+  padding: 1.4em;
+  border-bottom: 1px solid #999;
+  padding-bottom: 0px;
+}
+
+/* doc */
+
+.document {
+  grid-template-areas: 'document';
+  padding-top: 1em;
+  padding-left: 2.5em;
+}
+.document + div {
+  padding: 1em;
+}
+.document li {
+  line-height: 2;
+}
+
+.document code {
+  background: rgba(27,31,35,0.05);
+  padding: 1.5em;
+  display: block;
+  width: 50%;
+  font-size: 1.2em;
+}
+
+
+table {
+  width: 50%;
+  border-collapse: collapse;
+  border: 1px solid #333;
+}
+
+th,td {
+  border-bottom: 1px solid #333;
+  border-left: 1px solid #333;
+  padding: 1em;
+}
+
+th {
+  color: #000;
+}
+
+tr:nth-child(odd) {
+  background: rgba(27,31,35,0.05);
+  color: black;
+}
+
+.document a {
+  color: #4da1ff;
+}

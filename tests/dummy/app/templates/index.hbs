@@ -1,0 +1,164 @@
+<div class="demo">
+  <div class="nav">
+    <div class="nav__title">
+      <img src="https://emberjs.com/images/tomster-sm.png" class="nav__icon">
+      Ember Lottie Jar
+      {{#lottie-jar "wow" class="animation wow"}} ... {{/lottie-jar}}
+    </div>
+
+    <div class="nav__items">
+      <a href="/git">Github</a>
+      <a href="/git">npm</a>
+    </div>
+  </div>
+
+  <div class="demo--experiments">
+    <h1> Component: &#123;&#123; lottie-jar "the-cool-bird" 	&#125;&#125; </h1>
+    <div class="demo-exp--item">
+      Data Isloading: {{isLoading}}
+    </div>
+
+    <div class="demo-exp--item">
+      Data Failed: {{isDataFailed}}
+    </div>
+
+    <div class="demo-exp--item">
+      Animation Ready: {{isAnimationReady}}
+    </div>
+    <div class="demo-exp--item">
+      Sample Event(loopComplete) : Loops completed - {{animationLoopCount}}
+    </div>
+    <div class="demo-exp--item">
+      Actions:
+      <button {{action 'playAnimation'}}> play </button>
+      <button {{action 'stopAnimation'}}> stop </button>
+      <button {{action 'pauseAnimation'}}> pause </button>
+      <button {{action 'changeAnimationDirection'}}> change direction </button>
+      speed: {{input type="number" value=animationSpeed step="1" change=(action 'changeSpeed')}}
+    </div>
+  </div>
+
+  <div class="demo--animation">
+    {{lottie-jar "the-cool-bird"
+      class="animation the-cool-bird"
+      onDataSuccess=(action 'onDataSuccess')
+      DOMLoaded=(action 'animationLoaded')
+      loopComplete=(action 'loopCompleted')
+    }}
+  </div>
+</div>
+
+<div class="document">
+  <div class="why">
+    <h2>Why should I use ember-lottie-jar? </h2>
+    <ul>
+      <li> Load huge animation json files on demand ( reduces bundle weight ) </li>
+      <li> Access all lottie events (<a href="https://github.com/airbnb/lottie-web#events" target="_blank">https://github.com/airbnb/lottie-web#events</a>) </li>
+      <li> Get full access to the animation instance (perform stop, pause and more (<a href="https://github.com/airbnb/lottie-web#usage" target="_blank">https://github.com/airbnb/lottie-web#usage</a>)) </li>
+    </ul>
+  </div>
+
+  <div class="installation">
+    <h2> Installation </h2>
+    <p> Add this ember addon to your ember application, </p>
+    <code>ember install ember-lottie-jar</code>
+    <p> Add your lottie animation json files to <b>public/animation-data</b></p>
+    <h4> Config: </h4>
+    <p> You can config the lottie animation json files default path by adding the following to the ember config, </p>
+    <code> lottieAnimation: { basePath: 'someOtherFolderName' } </code>
+  </div>
+
+  <div class="usage">
+    <h2> Usage </h2>
+    <code>  &#123;&#123; lottie-jar "file-name"  &#125;&#125;</code>
+    <h4>Customize the loader:</h4>
+    <code>
+      &#123;&#123;#lottie-jar "file-name"&#125;&#125;
+      <br> &nbsp;&nbsp;&nbsp;&nbsp; custom loading text... or &#123;&#123;your-custom-loader-component&#125;&#125; <br>
+      &#123;&#123;/lottie-jar "file-name"&#125;&#125;
+      </code>
+  </div>
+
+  <div class="props">
+    <h2> Props </h2>
+    <p>Available properties are,</p>
+    <table>
+      <tr> <th>name</th> <th>type</th> <th>description</th> </tr>
+      <tr> <td>path</td> <td> String (required) </td> <td> path of animation json file </td> </tr>
+      <tr>
+        <td> el </td>
+        <td> DomObject (optional)</td>
+        <td> element on which anaimation will render. By default it will render over the component's element. </td>
+      </tr>
+      <tr>
+        <td> renderer </td>
+        <td> String (optional)</td>
+        <td> default: 'svg' </td>
+      </tr>
+      <tr>
+        <td> loop </td>
+        <td> Boolean (optional)</td>
+        <td> default: true </td>
+      </tr>
+      <tr>
+        <td> autoplay </td>
+        <td> Boolean (optional)</td>
+        <td> default: true </td>
+      </tr>
+      <tr>
+        <td> rendererSettings </td>
+        <td> Object (optional)</td>
+        <td> default: null </td>
+      </tr>
+      <tr>
+        <td> events </td>
+        <td> array (optional)</td>
+        <td> Array of events to be registered on the animation. <br> default:  ['complete', 'loopComplete', 'enterFrame', 'segmentStart', 'config_ready', 'data_ready', 'data_failed', 'loaded_images', 'DOMLoaded', 'destroy']</td>
+      </tr>
+    </table>
+    <p> For more about properties please check,
+      <a href="https://github.com/airbnb/lottie-web#usage" targe="_blank"> https://github.com/airbnb/lottie-web#usage </a>
+    </p>
+  </div>
+  <div class="events">
+    <h2> Events </h2>
+    <p>Available events are,</p>
+
+    <h4> onDataSuccess </h4>
+    <p>This event will be emited once the lottie animation json file has been <b>fetched succesfully</b> and will return json param.</p>
+    <code>
+        &#123;&#123;#lottie-jar "file-name" onDataSuccess=(action 'dataSuccess')&#125;&#125; <br><br>
+        ...   <br> <br> <br>
+        actions: { <br>
+          &nbsp;&nbsp;dataSuccess (animationDataJSON) { <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; // do something <br>
+          &nbsp;&nbsp;} <br>
+        } <br>
+    </code>
+
+    <h4> onDataError </h4>
+    <p>This event will be emited once the lottie animation json file <b> fetching has been failed</b> or if the file has <b>invalid json</b>.</p>
+    <code>
+        &#123;&#123;#lottie-jar "file-name" onDataError=(action 'error')&#125;&#125; <br><br>
+        ...   <br> <br> <br>
+        actions: { <br>
+          &nbsp;&nbsp;error (err) { <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; // do something <br>
+          &nbsp;&nbsp;} <br>
+        } <br>
+    </code>
+  </div>
+
+  <p>And the list of lottie animation events as mentioned above, for more please check <a href="https://github.com/airbnb/lottie-web#events">https://github.com/airbnb/lottie-web#events</a></p>
+
+  <code>
+      &#123;&#123;#lottie-jar "file-name" DOMLoaded=(action 'DOMLoaded')&#125;&#125; <br><br>
+      ...   <br> <br> <br>
+      actions: { <br>
+        &nbsp;&nbsp;DOMLoaded (animation) { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp; animation.start() <br>
+        &nbsp;&nbsp;} <br>
+      } <br>
+  </code>
+  <p> <b>note:</b> all the events will have animation as param, so you can perform actions like stop, play using the animation object.</p>
+</div>

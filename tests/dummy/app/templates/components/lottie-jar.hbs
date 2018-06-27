@@ -1,0 +1,7 @@
+{{#if isLoading}}
+  {{#if hasBlock}}
+    {{yield}} {{!! your custom loader component !!}}
+  {{else}}
+    <div class="loader"></div>
+  {{/if}}
+{{/if}}

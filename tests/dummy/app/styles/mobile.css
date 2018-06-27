@@ -1,0 +1,21 @@
+
+/* mobile */
+
+@media only screen and (max-width: 768px ) {
+  .demo {
+    display: grid;
+    grid-template-areas:
+    'navbar navbar navbar navbar'
+    'demoExperiments demoExperiments demoExperiments demoExperiments'
+    'demoAnimation demoAnimation demoAnimation demoAnimation'
+    'document document document document'
+  }
+
+  .demo--experiments {
+    width: 100%;
+  }
+
+  .document code {
+    width: 80%;
+  }
+}
